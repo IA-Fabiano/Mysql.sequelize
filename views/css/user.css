@@ -1,0 +1,32 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#menuUser{
+    background: #bad5be;
+}
+
+#menuUser ul {
+    max-width: 800px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+#menuUser ul li {
+    display: inline;
+}
+
+#menuUser ul li a {
+    color: black;
+    padding: 20px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background .4s;
+}
+
+#menuUser ul li a:hover {
+    background-color:#4c4c4c;
+}

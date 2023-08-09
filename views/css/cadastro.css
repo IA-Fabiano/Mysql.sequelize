@@ -1,0 +1,78 @@
+.box-title .title {
+   
+    position: relative; 
+    text-align:center; 
+    font-size:15px; 
+    text-transform:uppercase; 
+    color:#358941; 
+    letter-spacing:5px;
+  }
+  .box-formulario {
+  
+    width: 100%;
+    display: flex;  
+    justify-content: center;
+  
+  }  
+  .formulario {
+    
+    width: 30%;
+    margin-top: 5rem;
+    background: #bad5be;
+    padding: 30px 5%;
+    text-align: center;
+    border-radius: 20%;
+  
+  }
+     
+  .formulario span {
+    position: relative;
+    display: flex;
+    margin: 20px 10px;
+  
+  }
+    
+  .input-hidden {
+    
+    width: 100%;
+    padding: 10px 10px 13px 60px;
+    font-family: "Open Sans", sans;
+    background: #ffffff;
+    border: 0;
+    border-radius: 15px;
+    outline: 0;
+  
+  }
+    
+  .input-hidden + label {
+      
+    position: absolute;
+    padding: 10px 15px;
+    text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+    overflow: hidden;
+    width: 50px;
+    color: #9bdba4;
+  
+  }
+    
+  .btn-submit {
+    
+    color: #fff;
+    background: #43a351;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    transition: 0.5s;
+    width: 100%;
+    padding: 0.5em 1em;
+    font-size: 1.3em;
+    font-weight: bold;
+    float: left;
+  
+  }
+  
+  .btn-submit:hover {
+     
+    background-color:#4c4c4c;
+  
+  }
