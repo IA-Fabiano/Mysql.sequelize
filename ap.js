@@ -11,12 +11,17 @@ app.use(cors());
 app.use(express.urlencoded());
 // Testar conexão com o banco de dados
 // const db = require("./db/models");
+const login = require("./controllers/login");
+// Criar as rotas
+app.use("/", login);
 
-// Inclusao dos controles/rotas
 const users = require("./controllers/users");
-
 // Criar as rotas
 app.use("/", users);
+
+const empresa = require("./controllers/empresa");
+// Criar as rotas
+app.use("/", empresa);
 
 // Rota do servidor
 app.listen(8080, () => {
