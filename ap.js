@@ -7,8 +7,8 @@ const app = express();
 app.use(cors());
 
 // para podermos enviar os dados em formato json no thunder
-//app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.json());
+app.use(express.urlencoded( {extended:true}));
 // Testar conexão com o banco de dados
 // const db = require("./db/models");
 const login = require("./controllers/login");
