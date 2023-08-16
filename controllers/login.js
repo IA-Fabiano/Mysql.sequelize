@@ -8,7 +8,7 @@ router.post('/login-empresa', async(req, res) => {
     emp_senha = req.body.user_senha;
   
     if(req.body.emp_cnpj){      
-      if(req.body.user_senha){
+      if(req.body.emp_senha){
   
             const usu = await db.Empresas.findOne({
               // Indicar quais colunas recuperar
