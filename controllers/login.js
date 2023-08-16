@@ -34,8 +34,8 @@ router.post('/login-empresa', async(req, res) => {
               data = {
                 code: 200,
                 mensage: 'Empresa Logado com Sucesso',
-                Nome:achou.user_nome,
-                usuario:achou.user_usuario
+                Nome:achou.emp_nomefantasia,
+                usuario:achou.emp_razaosoci
               };
               
               res.json(data);
