@@ -7,7 +7,7 @@ router.post('/login-empresa', async(req, res) => {
     emp_cnpj = req.body.emp_cnpj;
     emp_senha = req.body.user_senha;
   
-    if(req.body.emp_email){      
+    if(req.body.emp_cnpj){      
       if(req.body.user_senha){
   
             const usu = await db.Empresas.findOne({
@@ -34,7 +34,8 @@ router.post('/login-empresa', async(req, res) => {
               data = {
                 code: 200,
                 mensage: 'Empresa Logado com Sucesso',
-                Nome:achou.user_nome
+                Nome:achou.user_nome,
+                usuario:achou.user_usuario
               };
               
               res.json(data);
@@ -103,7 +104,8 @@ router.post('/login', async(req, res) => {
               data = {
                 code: 200,
                 mensage: 'Usuário Logado com Sucesso',
-                Nome:achou.user_nome
+                nome:achou.user_nome,
+                usuario:achou.user_usuario
               };
               
               res.json(data);

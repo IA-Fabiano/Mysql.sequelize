@@ -74,7 +74,7 @@ router.post('/cadastro', async(req, res) => {
 });
 
 router.get('/listar', async(req, res) => {
-  const users = await db.Users.findAll({
+  const al = await db.Users.findAll({
 
       // Indicar quais colunas recuperar
       attributes: ['id', 'user_nome', 'user_usuario','user_senha'],
@@ -82,11 +82,11 @@ router.get('/listar', async(req, res) => {
       // Ordenar os registros pela coluna id na forma decrescente
       order: [['id', 'ASC']],
   });
-  if(users){
+  if(al){
     var data = {
       code: 200,
       mensage: 'Lista',
-      dados: users
+      users: al
     };
     res.json(data);
 
@@ -102,6 +102,7 @@ router.get('/listar', async(req, res) => {
 });
 
 router.delete('/deletar', async(req, res) => {
+  console.log("ape")
   const id = req.body.id;
   const usuario = await db.Users.findByPk(id);
   if (usuario) {
