@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/models/index");
 
-router.post('/login-empresa', async(req, res) => {
+router.post('/login-empresas', async(req, res) => {
     console.log(req.body); //console to verify the body data received on this endpoint request
     emp_cnpj = req.body.emp_cnpj;
     emp_senha = req.body.emp_senha;
@@ -21,7 +21,7 @@ router.post('/login-empresa', async(req, res) => {
   
   
           if(usu){
-                const achou = await db.Users.findOne({
+                const achou = await db.Empresas.findOne({
                 // Indicar quais colunas recuperar
                 attributes: ['id', 'emp_nomefantasia', 'emp_razaosoci', 'emp_cnpj','emp_email','emp_senha'],
         
