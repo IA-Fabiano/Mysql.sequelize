@@ -5,7 +5,7 @@ const db = require("../db/models/index");
 router.post('/login-empresa', async(req, res) => {
     console.log(req.body); //console to verify the body data received on this endpoint request
     emp_cnpj = req.body.emp_cnpj;
-    emp_senha = req.body.user_senha;
+    emp_senha = req.body.emp_senha;
   
     if(req.body.emp_cnpj){      
       if(req.body.emp_senha){
