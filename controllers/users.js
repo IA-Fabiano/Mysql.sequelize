@@ -86,7 +86,8 @@ router.get('/listar', async(req, res) => {
     var data = {
       code: 200,
       mensage: 'Lista',
-      users: al
+      users: al,
+      dados: al
     };
     res.json(data);
 
