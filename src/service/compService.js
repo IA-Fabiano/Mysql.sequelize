@@ -1,26 +1,19 @@
-//  Empresa
-const express = require("express");
-const router = express.Router();
 const db = require("../db/models/index");
 
-  
-router.post('/cadastro-empresas', async(req, res) => {
-    let dados = req.body;
-    console.log(dados)
-    let emp_cnpj=req.body.emp_cnpj;
-  
-     if(dados.emp_razaosoci){ 
-        if(dados.emp_cnpj){ 
-            if(dados.emp_email){
-              if(dados.emp_senha){
-                console.log(dados);       
+exports.createComp = async(newUser, { soci, impo }) => {
+    if(newUser.emp_razaosoci){ 
+        if(newUser.emp_cnpj){ 
+            if(newUser.emp_email){
+
+             
+                console.log(newUser);       
                 
                 const usu = await db.Empresas.findOne({
                   // Indicar quais colunas recuperar
                   attributes: ['id', 'emp_nomefantasia', 'emp_razaosoci', 'emp_cnpj','emp_email'],
           
                   // Acrescentado condição para indicar qual registro deve ser retornado do banco de dados
-                  where: { emp_cnpj }, 
+                  where: { impo }, 
               });
                 console.log(usu)
     
@@ -28,7 +21,7 @@ router.post('/cadastro-empresas', async(req, res) => {
                 if(!usu){
     
             
-                   const dadosUsuario = await db.Empresas.create(dados);
+                   const dadosUsuario = await db.Empresas.create(newUser);
                   var data = {
                   code: 200,
                   mensage: 'Usuário cadastrado com Sucesso'
@@ -36,7 +29,7 @@ router.post('/cadastro-empresas', async(req, res) => {
                 res.json(data); 
                 console.log(data);
                 console.log(dadosUsuario);
-           
+                return(data)
     
                   }else{
                   var data = {
@@ -45,20 +38,17 @@ router.post('/cadastro-empresas', async(req, res) => {
                   };
                   res.json(data);
                   console.log(data);
+                  return(data)
                   } // aqui termina o  validar
-              }else{ // se não do password
-                var data = {
-                  code: 401,
-                  mensage: 'Coloque uma senha'
-                };
-                res.json(data);
-              }            
+              
+
             }else{ // se não do password
               var data = {
                 code: 401,
                 mensage: 'Coloque um email'
               };
               res.json(data);
+              return(data)
             } 
         }else{  // se não do nome
               var data = {
@@ -66,6 +56,7 @@ router.post('/cadastro-empresas', async(req, res) => {
                 mensage: 'Coloque um CNPJ' 
               };
               res.json(data);
+              return(data)
              }
     }else{ // se não do Username
             var data = {
@@ -73,12 +64,12 @@ router.post('/cadastro-empresas', async(req, res) => {
                 mensage: 'coloque a razão social '
             };
                res.json(data);
+               return(data)
           }
   
-  
-});
-  
-router.get('/listar-empresas', async(req, res) => {
+};
+
+exports.listComp = async() => {
     const users = await db.Empresas.findAll({
   
         // Indicar quais colunas recuperar
@@ -94,6 +85,7 @@ router.get('/listar-empresas', async(req, res) => {
         dados: users
       };
       res.json(data);
+      return(data)
   
     }else{
       var data = {
@@ -101,56 +93,54 @@ router.get('/listar-empresas', async(req, res) => {
         mensage: 'Sem Empresa cadastrado'
       };
       res.json(data);
+      return(data)
   
     }
-  
-});
-  
-router.delete('/deletar-empresas', async(req, res) => {
-    const id = req.body.id;
-    const usuario = await db.Empresas.findByPk(id);
+};
+
+exports.updateComp  = async(userId, updatedUser) => {
+      
+   
+    const usuario = await db.Empresas.findByPk(userId);
     if (usuario) {
-      await usuario.destroy();
+       await db.Empresas.update(updatedUser, { where: { id: userId } })
       data = {
-          code: 200,
-          mensage: 'Usuário deletado com sucesso!',
-          dadosUsuario: usuario,
-        };
+        code: 200,
+        mensage: 'Dados da Empresa atualizado com sucesso!',
+       dadosUsuario: dados
+      };
       res.json(data)
-  
+      return(data)
+
+
     }else{
       var data = {
         code: 401,
-        mensage: 'Usúario não foi encontrado'
+        mensage: 'Empresa não foi encontrado'
       };
-      res.json(data);
-  
+       res.json(data);  
+       return(data)
     }
-});
-  
-router.put('/editar-empresas', async(req, res) => {
-    let dados = req.body;
-    // Nome usuário senha all
-  
-   
-      const usuario = await db.Empresas.findByPk(dados.id);
-      if (usuario) {
-         await db.Empresas.update(dados, { where: { id: dados.id } })
+};
+
+exports.deleteComp = async(userId) => {
+    const usuario = await db.Empresas.findByPk(userId);
+    if (usuario) {
+        await usuario.destroy();
         data = {
-          code: 200,
-          mensage: 'Dados da Empresa atualizado com sucesso!',
-         dadosUsuario: dados
-        };
+            code: 200,
+            mensage: 'Usuário deletado com sucesso!',
+            dadosUsuario: usuario,
+          };
         res.json(data)
-  
-  
+        return (data)
+    
       }else{
         var data = {
           code: 401,
-          mensage: 'Empresa não foi encontrado'
+          mensage: 'Usúario não foi encontrado'
         };
-        res.json(data);  
+        res.json(data);
+        return (data)
       }
-});
-   
-module.exports = router;
+};

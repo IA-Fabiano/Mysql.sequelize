@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors"); // Importar a biblioteca cors
 
 const app = express();
+// jwt sessão
 
 // Permitir a conexão das portas diferentes do fron e back
 app.use(cors());
@@ -9,21 +10,11 @@ app.use(cors());
 // para podermos enviar os dados em formato json no thunder
 app.use(express.json());
 app.use(express.urlencoded( {extended:true}));
-// Testar conexão com o banco de dados
-// const db = require("./db/models");
-const login = require("./controllers/login");
-// Criar as rotas
-app.use("/", login);
 
-const users = require("./controllers/users");
-// Criar as rotas
-app.use("/", users);
 
-const empresa = require("./controllers/empresa");
-// Criar as rotas
-app.use("/", empresa);
+const rou = require("./src/routes/index");
+app.use("/", rou);
 
-// Rota do servidor
 app.listen(8080, () => {
   console.log("Servidor iniciado na porta 8080: http://localhost:8080");
 });
