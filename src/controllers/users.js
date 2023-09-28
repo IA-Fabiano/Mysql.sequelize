@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+//const router = express.Router();
 const db = require("../db/models/index");
  // User
 
@@ -56,7 +56,8 @@ const db = require("../db/models/index");
  
    return res.json({ success: true, user: deletedUser });
  };
-// quantidade de empresas e usuarios cadastrados
+// quantidade de empresas e usuarios cadastrados 
+/*
 router.get('/quant', async(req, res) => {
   const users = await db.Users.findAll({
 
@@ -96,4 +97,4 @@ router.get('/quant', async(req, res) => {
 
 });
  
-module.exports = router;
+module.exports = router; */
