@@ -1,6 +1,6 @@
 const db = require("../db/models/index");
 
-exports.createUser = async(newUser, { soci, impo }) => {
+exports.createUser = async(newUser, user_usuario) => {
     if(dados.user_usuario){ 
         if(dados.user_nome){ 
             if(dados.user_senha){
@@ -11,7 +11,7 @@ exports.createUser = async(newUser, { soci, impo }) => {
                 attributes: ['id', 'user_nome', 'user_usuario','user_senha', 'createdAt', 'updatedAt'],
         
                 // Acrescentado condição para indicar qual registro deve ser retornado do banco de dados
-                where: { impo },
+                where: { user_usuario },
             });
               console.log(usu)
             
@@ -93,12 +93,12 @@ exports.listUsers = async() => {
     }
 };
 
-exports.updateUser  = async(userId, updatedUser) => {
+exports.updateUser  = async(id, updatedUser) => {
       
    
-    const usuario = await db.Users.findByPk(userId);
+    const usuario = await db.Users.findByPk(id);
     if (usuario) {
-       await db.Users.update(updatedUser, { where: { id: userId } })
+       await db.Users.update(updatedUser, { where: id })
       data = {
         code: 200,
         mensage: 'Dados do usuario atualizado com sucesso!',
@@ -118,8 +118,8 @@ exports.updateUser  = async(userId, updatedUser) => {
     }
 };
 
-exports.deleteUser = async(userId) => {
-    const usuario = await db.Users.findByPk(userId);
+exports.deleteUser = async(id) => {
+    const usuario = await db.Users.findByPk(id);
     if (usuario) {
         await usuario.destroy();
         data = {

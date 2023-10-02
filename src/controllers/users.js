@@ -24,15 +24,15 @@ const db = require("../db/models/index");
  };
  
  exports.createUser = (req, res) => {
-   const { user, password, name } = req.body;
+   const { user_usuario, user_senha, user_nome } = req.body;
  
    const newUser = {
-     user,
-     password,
-     name,
+    user_usuario,
+     user_senha,
+     user_nome,
    };
  
-   const result = userService.createUser(newUser);
+   const result = userService.createUser(newUser, user_usuario);
  
    if (!result.success) {
      return res.status(201).json({ success: true, user: result.data });

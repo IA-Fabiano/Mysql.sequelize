@@ -1,18 +1,18 @@
 const db = require("../db/models/index");
 
-exports.authenticateUser = async (usuario, password) => {
-    if(usuario){      
-        if(password){
+exports.authenticateUser = async (user_usuario, user_senha) => {
+    if(user_usuario){      
+        if(user_senha){
   
               const usu = await db.Users.findOne({
                 // Indicar quais colunas recuperar
-                attributes: ['id', 'user_nome', 'user_usuario','user_senha', 'createdAt', 'updatedAt'],
+                attributes: ['user_usuario','user_senha'],
         
                 // Acrescentado condição para indicar qual registro deve ser retornado do banco de dados
-                where: { usuario },
+                where: { user_usuario : user_usuario },
               });
-              console.log(usu)
-    
+              console.log(usu);
+              console.log('teste')
   
             if(usu){
                   const achou = await db.Users.findOne({
@@ -20,10 +20,10 @@ exports.authenticateUser = async (usuario, password) => {
                   attributes: ['id', 'user_nome', 'user_usuario','user_senha', 'createdAt', 'updatedAt'],
           
                   // Acrescentado condição para indicar qual registro deve ser retornado do banco de dados
-                  where: { usuario, password },
+                  where: { user_usuario, user_senha },
               });
                
-              console.log(achou)
+              console.log('teste')
               if(achou){
                 data = {
                   code: 200,
@@ -32,36 +32,38 @@ exports.authenticateUser = async (usuario, password) => {
                   usuario:achou.user_usuario
                 };
                 
-                res.json(data);
+                return console.log(data)
               }else{
                 data = {
                   code: 401,
                   mensage: 'Senha errada'
                 };
                 
-                res.json(data);
+                return data
               }
             }else{
               data = {
                 code: 401,
+                nome:user_usuario,
                 mensage: 'Usuário errado'
               };
             
-            res.json(data);
+              return console.log(data)
             }
        }else{ data = {
         code: 401,
         mensage: 'Senha não informada'
         };
         
-        res.json(data); } 
+        return data
+       } 
       }else{ 
         data = {
           code: 401,
           mensage: 'Usuário não informado'
         };
         
-        res.json(data); 
+        return data
       }
       
 };

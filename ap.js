@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors"); // Importar a biblioteca cors
-
+var SwaggerUi = require('swagger-express-mw');
+var Swaggerfile = require('./swagger-ui_output.json');
 const app = express();
 // jwt sessão
 

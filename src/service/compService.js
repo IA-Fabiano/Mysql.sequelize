@@ -1,6 +1,6 @@
 const db = require("../db/models/index");
 
-exports.createComp = async(newUser, { soci, impo }) => {
+exports.createComp = async(newUser, emp_cnpj) => {
     if(newUser.emp_razaosoci){ 
         if(newUser.emp_cnpj){ 
             if(newUser.emp_email){
@@ -13,7 +13,7 @@ exports.createComp = async(newUser, { soci, impo }) => {
                   attributes: ['id', 'emp_nomefantasia', 'emp_razaosoci', 'emp_cnpj','emp_email'],
           
                   // Acrescentado condição para indicar qual registro deve ser retornado do banco de dados
-                  where: { impo }, 
+                  where: { emp_cnpj }, 
               });
                 console.log(usu)
     
@@ -98,12 +98,12 @@ exports.listComp = async() => {
     }
 };
 
-exports.updateComp  = async(userId, updatedUser) => {
+exports.updateComp  = async(id, updatedUser) => {
       
    
-    const usuario = await db.Empresas.findByPk(userId);
+    const usuario = await db.Empresas.findByPk(id);
     if (usuario) {
-       await db.Empresas.update(updatedUser, { where: { id: userId } })
+       await db.Empresas.update(updatedUser, { where: id })
       data = {
         code: 200,
         mensage: 'Dados da Empresa atualizado com sucesso!',
@@ -123,8 +123,8 @@ exports.updateComp  = async(userId, updatedUser) => {
     }
 };
 
-exports.deleteComp = async(userId) => {
-    const usuario = await db.Empresas.findByPk(userId);
+exports.deleteComp = async(id) => {
+    const usuario = await db.Empresas.findByPk(id);
     if (usuario) {
         await usuario.destroy();
         data = {

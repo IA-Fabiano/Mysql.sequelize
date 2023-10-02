@@ -15,7 +15,7 @@ exports.createComp = (req, res) => {
     emp_nomefantasia
   };
 
-  const result = compService.createComp(newUser,{ emp_cnpj});
+  const result = compService.createComp(newUser, emp_cnpj);
 
   if (!result.success) {
     return res.status(201).json({ success: true, user: result.data });

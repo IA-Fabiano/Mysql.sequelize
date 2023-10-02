@@ -5,13 +5,20 @@ const loginService = require("../service/loginService");
 exports.login = (req, res) => {
   const { user_usuario, user_senha } = req.body;
 
+  console.log(user_usuario)
+
   const result = loginService.authenticateUser(user_usuario, user_senha);
-  if (result) {
-    return res.json({ success: true, message: "Login bem sucedido" });
-  } else {
-    return res
-      .status(401)
-      .json({ success: false, message: "Credenciais inválidas" });
-  }
+
+  console.log(result)
+
+
+  // if (result) {
+  
+  //   return res.json( { success: true, message: "Login bem sucedido" });
+  // } else {
+  //   return res
+  //     .status(401)
+  //     .json({ success: false, message: "Credenciais inválidas" });
+  // }
 };
 //module.exports = router;
