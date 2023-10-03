@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors"); // Importar a biblioteca cors
-var SwaggerUi = require('swagger-express-mw');
-var Swaggerfile = require('./swagger-ui_output.json');
+// var swaggerUI = require('swagger-express-mw');
+// var swaggerfile = require('./src/swagger-ui_output.json');
 const app = express();
 // jwt sessão
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded( {extended:true}));
 
-
+// app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerfile));
 const rou = require("./src/routes/index");
 app.use("/", rou);
 
