@@ -31,14 +31,14 @@ exports.authenticateUser = async (user_usuario, user_senha) => {
                   nome:achou.user_nome,
                   usuario:achou.user_usuario
                 };
-                
+                console.log(data)
                 return console.log(data)
               }else{
                 data = {
                   code: 401,
                   mensage: 'Senha errada'
                 };
-                
+                console.log(data)
                 return data
               }
             }else{
@@ -47,14 +47,14 @@ exports.authenticateUser = async (user_usuario, user_senha) => {
                 nome:user_usuario,
                 mensage: 'Usuário errado'
               };
-            
+              console.log(data)
               return console.log(data)
             }
        }else{ data = {
         code: 401,
         mensage: 'Senha não informada'
         };
-        
+        console.log(data)
         return data
        } 
       }else{ 
@@ -62,7 +62,7 @@ exports.authenticateUser = async (user_usuario, user_senha) => {
           code: 401,
           mensage: 'Usuário não informado'
         };
-        
+        console.log(data)
         return data
       }
       

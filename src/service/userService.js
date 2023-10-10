@@ -23,7 +23,7 @@ exports.createUser = async(newUser, user_usuario) => {
                 code: 200,
                 mensage: 'Usuário cadastrado com Sucesso'
               };
-              res.json(data); 
+               
               console.log(data);
               console.log(dadosUsuario);
               return(data)
@@ -33,7 +33,7 @@ exports.createUser = async(newUser, user_usuario) => {
                   code: 401,
                   mensage: 'Usuário ja esta em uso'
                 };
-                res.json(data);
+                
                 console.log(data);
                 return(data)
                 } // aqui termina o  validar
@@ -42,7 +42,7 @@ exports.createUser = async(newUser, user_usuario) => {
                 code: 401,
                 mensage: 'Coloque uma senha'
               };
-              res.json(data);
+              
               return(data)
             } 
         }else{  // se não do nome
@@ -50,7 +50,7 @@ exports.createUser = async(newUser, user_usuario) => {
                 code: 401,
                 mensage: 'Coloque um Nome' 
               };
-              res.json(data);
+              
               return(data)
              }
     }else{ // se não do Username
@@ -58,7 +58,7 @@ exports.createUser = async(newUser, user_usuario) => {
                 code: 401,
                 mensage: 'Coloque um Usuário'
             };
-               res.json(data);
+              
                return(data)
           }
   
@@ -79,7 +79,7 @@ exports.listUsers = async() => {
         mensage: 'Lista',
         dados: users
       };
-      res.json(data);
+      console.log(data)
       return(data)
   
     }else{
@@ -87,7 +87,7 @@ exports.listUsers = async() => {
         code: 401,
         mensage: 'Sem Empresa cadastrado'
       };
-      res.json(data);
+      console.log(data)
       return(data)
   
     }
@@ -104,7 +104,7 @@ exports.updateUser  = async(id, updatedUser) => {
         mensage: 'Dados do usuario atualizado com sucesso!',
        dadosUsuario: dados
       };
-      res.json(data)
+      console.log(data)
       return(data)
 
 
@@ -113,7 +113,7 @@ exports.updateUser  = async(id, updatedUser) => {
         code: 401,
         mensage: 'Usuario não foi encontrado'
       };
-       res.json(data);  
+      console.log(data) 
        return(data)
     }
 };
@@ -127,7 +127,7 @@ exports.deleteUser = async(id) => {
             mensage: 'Usuário deletado com sucesso!',
             dadosUsuario: usuario,
           };
-        res.json(data)
+          console.log(data)
         return (data)
     
       }else{
@@ -135,7 +135,7 @@ exports.deleteUser = async(id) => {
           code: 401,
           mensage: 'Usúario não foi encontrado'
         };
-        res.json(data);
+        console.log(data)
         return (data)
       }
 };

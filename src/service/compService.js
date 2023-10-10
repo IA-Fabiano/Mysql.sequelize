@@ -26,7 +26,7 @@ exports.createComp = async(newUser, emp_cnpj) => {
                   code: 200,
                   mensage: 'Usuário cadastrado com Sucesso'
                 };
-                res.json(data); 
+                 
                 console.log(data);
                 console.log(dadosUsuario);
                 return(data)
@@ -36,7 +36,7 @@ exports.createComp = async(newUser, emp_cnpj) => {
                     code: 401,
                     mensage: 'CNPJ ja esta em uso'
                   };
-                  res.json(data);
+                  
                   console.log(data);
                   return(data)
                   } // aqui termina o  validar
@@ -47,7 +47,7 @@ exports.createComp = async(newUser, emp_cnpj) => {
                 code: 401,
                 mensage: 'Coloque um email'
               };
-              res.json(data);
+             
               return(data)
             } 
         }else{  // se não do nome
@@ -55,7 +55,7 @@ exports.createComp = async(newUser, emp_cnpj) => {
                 code: 401,
                 mensage: 'Coloque um CNPJ' 
               };
-              res.json(data);
+            
               return(data)
              }
     }else{ // se não do Username
@@ -63,7 +63,7 @@ exports.createComp = async(newUser, emp_cnpj) => {
                 code: 401,
                 mensage: 'coloque a razão social '
             };
-               res.json(data);
+               
                return(data)
           }
   
@@ -84,7 +84,7 @@ exports.listComp = async() => {
         mensage: 'Lista',
         dados: users
       };
-      res.json(data);
+      console.log(data)
       return(data)
   
     }else{
@@ -92,7 +92,7 @@ exports.listComp = async() => {
         code: 401,
         mensage: 'Sem Empresa cadastrado'
       };
-      res.json(data);
+      console.log(data)
       return(data)
   
     }
@@ -109,7 +109,7 @@ exports.updateComp  = async(id, updatedUser) => {
         mensage: 'Dados da Empresa atualizado com sucesso!',
        dadosUsuario: dados
       };
-      res.json(data)
+      console.log(data)
       return(data)
 
 
@@ -118,7 +118,7 @@ exports.updateComp  = async(id, updatedUser) => {
         code: 401,
         mensage: 'Empresa não foi encontrado'
       };
-       res.json(data);  
+      console.log(data)  
        return(data)
     }
 };
@@ -132,7 +132,7 @@ exports.deleteComp = async(id) => {
             mensage: 'Usuário deletado com sucesso!',
             dadosUsuario: usuario,
           };
-        res.json(data)
+          console.log(data)
         return (data)
     
       }else{
@@ -140,7 +140,7 @@ exports.deleteComp = async(id) => {
           code: 401,
           mensage: 'Usúario não foi encontrado'
         };
-        res.json(data);
+        console.log(data)
         return (data)
       }
 };

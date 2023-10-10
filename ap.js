@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors"); // Importar a biblioteca cors
-// var swaggerUI = require('swagger-express-mw');
-// var swaggerfile = require('./src/swagger-ui_output.json');
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./src/swagger-output.json')
 const app = express();
 // jwt sessão
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded( {extended:true}));
 // app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerfile));
 const rou = require("./src/routes/index");
 app.use("/", rou);
-
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.listen(8080, () => {
   console.log("Servidor iniciado na porta 8080: http://localhost:8080");
 });
