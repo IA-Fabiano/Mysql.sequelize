@@ -32,7 +32,7 @@ exports.authenticateUser = async (user_usuario, user_senha) => {
                   usuario:achou.user_usuario
                 };
                 console.log(data)
-                return console.log(data)
+                return data
               }else{
                 data = {
                   code: 401,

@@ -6,8 +6,9 @@ const db = require("../db/models/index");
  const userService = require("../service/userService");
 
  exports.listUsers = (req, res) => {
-  /**
- * @swagger
+  //swagger.tags = ['Users']
+  /**    
+ * @swagger 
  * /listar:
  *   get:
  *     summary: Lista todos os usuários
@@ -49,7 +50,12 @@ const db = require("../db/models/index");
  */
 
    const users = userService.listUsers();
-   return res.json({ success: true, users });
+   console.log("teste")
+   return res.json({ 
+    success: true,
+     eve:users.dados 
+    });
+
  };
  
  exports.updateUser = (req, res) => {

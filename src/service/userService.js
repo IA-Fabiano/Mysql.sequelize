@@ -1,7 +1,7 @@
 const db = require("../db/models/index");
 
 exports.createUser = async(newUser, user_usuario) => {
-    if(dados.user_usuario){ 
+    if(user_usuario){ 
         if(dados.user_nome){ 
             if(dados.user_senha){
               console.log(dados);       
@@ -79,8 +79,8 @@ exports.listUsers = async() => {
         mensage: 'Lista',
         dados: users
       };
-      console.log(data)
-      return(data)
+     // console.log(data)
+      return console.log(data)
   
     }else{
       var data = {

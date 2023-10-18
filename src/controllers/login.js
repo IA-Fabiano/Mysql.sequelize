@@ -3,8 +3,9 @@ const express = require("express");
 const db = require("../db/models/index");
 const loginService = require("../service/loginService");
 exports.login = (req, res) => {
-  /*
-   @swagger
+   //swagger.tags = ['Login']
+  /** 
+  * @swagger
      /login:
      post:
        summary: Realiza o login de um usuário
@@ -49,11 +50,12 @@ exports.login = (req, res) => {
   console.log(result, "teste");
 
   if (result) {
-    return res.json({
+    return res.json( {
       success: true,
       message: "Login bem sucedido",
       usuario: result.usuario,
-    });
+     }
+    );
   } else {
     return res
       .status(401)
