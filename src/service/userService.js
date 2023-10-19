@@ -77,10 +77,10 @@ exports.listUsers = async() => {
       var data = {
         code: 200,
         mensage: 'Lista',
-        dados: users
+        users
       };
      // console.log(data)
-      return console.log(data)
+      return users
   
     }else{
       var data = {
