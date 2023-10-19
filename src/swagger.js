@@ -309,5 +309,5 @@ const doc = {
 };
 
 swaggerAutogen(outputFile, endpointsFile, doc).then(() => {
-  require("../ap");
+  require("../app");
 });
