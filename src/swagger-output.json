@@ -21,18 +21,9 @@
       "description": " Rotas direcionadas ao Login"
     }
   ],
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json",
-    "x-www-form-urlencoded"
-  ],
-  "produces": [
-    "application/json",
-    "x-www-form-urlencoded"
-  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json", "x-www-form-urlencoded"],
+  "produces": ["application/json", "x-www-form-urlencoded"],
   "paths": {
     "/login": {
       "post": {

@@ -1,76 +1,67 @@
 const express = require("express");
 //const router = express.Router();
 const db = require("../db/models/index");
- // User
+// User
 
- const userService = require("../service/userService");
+const userService = require("../service/userService");
 
- exports.listUsers = (req, res) => {
+exports.listUsers = async (req, res) => {
+  try {
+    const users = await userService.listUsers();
+    console.log(users);
+    return res.json(users);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erro ao listar usuários" });
+  }
+};
+exports.updateUser = (req, res) => {
+  const userId = parseInt(req.params.id);
+  const updatedUser = req.body;
 
+  const result = userService.updateUser(userId, updatedUser);
 
-   const users = userService.listUsers();
-   console.log(users)
-   return res.json(
-     
-   
-     users
-    
-    );
+  if (result.success) {
+    return res.json({ success: true, user: result.user });
+  } else {
+    return res.status(404).json({ success: false, message: result.message });
+  }
+};
 
- };
- 
- exports.updateUser = (req, res) => {
+exports.createUser = (req, res) => {
+  const { user_usuario, user_senha, user_nome } = req.body;
 
- 
-
-   const userId = parseInt(req.params.id);
-   const updatedUser = req.body;
- 
-   const result = userService.updateUser(userId, updatedUser);
- 
-   if (result.success) {
-     return res.json({ success: true, user: result.user });
-   } else {
-     return res.status(404).json({ success: false, message: result.message });
-   }
- };
- 
- exports.createUser = (req, res) => {
- 
-   const { user_usuario, user_senha, user_nome } = req.body;
- 
-   const newUser = {
+  const newUser = {
     user_usuario,
-     user_senha,
-     user_nome,
-   };
- 
-   const result = userService.createUser(newUser, user_usuario);
- 
-   if (!result.success) {
-     return res.status(201).json({ success: true, user: result.data });
-   } else {
-     return res
-       .status(result.status)
-       .json({ success: false, message: result.message });
-   }
- };
- 
- exports.deleteUser = (req, res) => {
- 
-   const userId = parseInt(req.params.id);
- 
-   const deletedUser = userService.deleteUser(userId);
- 
-   if (deletedUser === null) {
-     return res
-       .status(404)
-       .json({ success: false, message: "Usuário não encontrado" });
-   }
- 
-   return res.json({ success: true, user: deletedUser });
- };
-// quantidade de empresas e usuarios cadastrados 
+    user_senha,
+    user_nome,
+  };
+
+  const result = userService.createUser(newUser, user_usuario);
+
+  if (!result.success) {
+    return res.status(201).json({ success: true, user: result.data });
+  } else {
+    return res
+      .status(result.status)
+      .json({ success: false, message: result.message });
+  }
+};
+
+exports.deleteUser = (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  const deletedUser = userService.deleteUser(userId);
+
+  if (deletedUser === null) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Usuário não encontrado" });
+  }
+
+  return res.json({ success: true, user: deletedUser });
+};
+// quantidade de empresas e usuarios cadastrados
 /*
 router.get('/quant', async(req, res) => {
   const users = await db.Users.findAll({

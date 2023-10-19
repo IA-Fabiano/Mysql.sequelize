@@ -21,5 +21,4 @@ router.get("/empresa", compController.listComp);
 router.put("/empresa/:id", compController.updateComp);
 router.delete("/empresa/:id", compController.deleteComp);
 
-
 module.exports = router;

@@ -3,7 +3,6 @@ const express = require("express");
 const db = require("../db/models/index");
 const loginService = require("../service/loginService");
 exports.login = (req, res) => {
-
   const { user_usuario, user_senha } = req.body;
   console.log(user_senha);
   console.log(user_usuario);
@@ -13,13 +12,12 @@ exports.login = (req, res) => {
   console.log(result, "teste");
 
   if (result) {
-    console.log("meu amado",result)
-    return res.json( {
+    console.log("meu amado", result);
+    return res.json({
       success: true,
       message: "Login bem sucedido",
       usuario: result.usuario,
-     }
-    );
+    });
   } else {
     return res
       .status(401)
