@@ -1,56 +1,45 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
+    "version": "3.0.3",
     "title": "My API",
     "description": "Documentação api <b>Residuum</b>."
   },
-  "host": "localhost:3000",
+  "host": "localhost:8080",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "Users",
-      "description": " Rotas direcionadas ao usuario"
-    },
-    {
-      "name": "Empresas",
-      "description": "Rota direcionadas a Empresa"
-    },
-    {
-      "name": "Login",
-      "description": " Rotas direcionadas ao Login"
-    }
+  "schemes": [
+    "http",
+    "https"
   ],
-  "schemes": ["http", "https"],
-  "consumes": ["application/json", "x-www-form-urlencoded"],
-  "produces": ["application/json", "x-www-form-urlencoded"],
+  "consumes": [
+    "application/json",
+    "x-www-form-urlencoded"
+  ],
+  "produces": [
+    "application/json",
+    "x-www-form-urlencoded"
+  ],
   "paths": {
     "/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Login"
+        ],
+        "description": "Autenticação",
         "parameters": [
           {
-            "name": "body",
+            "name": "Dados",
             "in": "body",
+            "description": "Dados do Login",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "user_usuario": {
-                  "example": "any"
-                },
-                "user_senha": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Objeto_Login"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }
@@ -89,6 +78,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -213,6 +205,25 @@
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "Objeto_Login": {
+      "type": "object",
+      "properties": {
+        "user_usuario": {
+          "type": "string",
+          "example": "Emerson"
+        },
+        "user_senha": {
+          "type": "string",
+          "example": "45235"
+        }
+      },
+      "required": [
+        "user_usuario",
+        "user_senha"
+      ]
     }
   }
 }

@@ -15,11 +15,11 @@ exports.listUsers = async (req, res) => {
     return res.status(500).json({ message: "Erro ao listar usuários" });
   }
 };
-exports.updateUser = (req, res) => {
+exports.updateUser = async (req, res) => {
   const userId = parseInt(req.params.id);
   const updatedUser = req.body;
 
-  const result = userService.updateUser(userId, updatedUser);
+  const result = await userService.updateUser(userId, updatedUser);
 
   if (result.success) {
     return res.json({ success: true, user: result.user });
@@ -28,7 +28,7 @@ exports.updateUser = (req, res) => {
   }
 };
 
-exports.createUser = (req, res) => {
+exports.createUser = async (req, res) => {
   const { user_usuario, user_senha, user_nome } = req.body;
 
   const newUser = {
@@ -37,7 +37,7 @@ exports.createUser = (req, res) => {
     user_nome,
   };
 
-  const result = userService.createUser(newUser, user_usuario);
+  const result = await userService.createUser(newUser, user_usuario);
 
   if (!result.success) {
     return res.status(201).json({ success: true, user: result.data });
@@ -48,10 +48,10 @@ exports.createUser = (req, res) => {
   }
 };
 
-exports.deleteUser = (req, res) => {
+exports.deleteUser = async (req, res) => {
   const userId = parseInt(req.params.id);
 
-  const deletedUser = userService.deleteUser(userId);
+  const deletedUser = await userService.deleteUser(userId);
 
   if (deletedUser === null) {
     return res
